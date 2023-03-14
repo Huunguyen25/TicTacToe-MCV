@@ -206,13 +206,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         // TODO add your handling code here:
         JButton button = (JButton) evt.getSource();
         this.mvcMessaging.notify("playerMove", button.getName());
-
     }//GEN-LAST:event_onClick
 
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

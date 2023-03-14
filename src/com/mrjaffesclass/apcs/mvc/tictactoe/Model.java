@@ -51,6 +51,38 @@ public class Model implements MessageHandler {
         this.gameOver = false;
     }
 
+    public boolean isWinner() {
+
+        // Check the rows and columns for a tic tac toe
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]) && !board[i][0].equals("")) {
+                return true;
+            }
+            if (board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]) && !board[0][i].equals("")) {
+                return true;
+            }
+        }
+
+        // Check the diagonals
+        if (board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
+            return true;
+        }
+        if (board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
+            return true;
+        }
+
+        // If we haven't found it, then return a blank string
+        return false;
+    }
+
+    public boolean whoseMove() {
+        for (int row = 0; row < this.board.length; row++) {
+            for (int col = 0; col < this.board[0].length; col++) {
+
+            }
+        }
+    }
+
     @Override
     public void messageHandler(String messageName, Object messagePayload) {
         // Display the message to the console for debugging
@@ -59,9 +91,7 @@ public class Model implements MessageHandler {
         } else {
             System.out.println("MSG: received by model: " + messageName + " | No data sent");
         }
-        
-        
-        
+
         // playerMove message handler
         if (messageName.equals("playerMove")) {
             // Get the position string and convert to row and col
@@ -79,9 +109,7 @@ public class Model implements MessageHandler {
                 // Send the boardChange message along with the new board 
                 this.mvcMessaging.notify("boardChange", this.board);
             }
-            
-            
-            
+
             // newGame message handler
         } else if (messageName.equals("newGame")) {
             // Reset the app state
